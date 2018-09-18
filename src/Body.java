@@ -64,7 +64,10 @@ public double getYVel() {
 public double getMass() {
 	return myMass;
 }
-
+/**
+ * @returns the name of the file of the picture you are
+ * going to be moving
+ */
 public String getName() {
 	return myFileName;
 }
@@ -146,9 +149,15 @@ public void update(double deltaT, double xForce, double yForce) {
 	myXPos = nx;
 	myYPos = ny;
 	myXVel = nvx;
-	myYVel = nvy;
-			
-	
-	
+	myYVel = nvy;	
+}
+/**
+ * draws the object 
+ * @param myXPos is the x position it is drawn
+ * @param myYPos is the y position it is drawnn
+ * @param myFileName is what it looks like
+ */
+public void draw() {
+	StdDraw.picture(myXPos, myYPos, "images/"+myFileName);
 }
 }
