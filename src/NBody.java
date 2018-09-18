@@ -1,3 +1,4 @@
+	
 
 /**
  * @author YOUR NAME THE STUDENT IN 201
@@ -63,15 +64,28 @@ public class NBody {
 		
 		Body[] bodies = readBodies(fname);
 		double radius = readRadius(fname);
-		
 		StdDraw.setScale(-radius, radius);
 		StdDraw.picture(0,0,"images/starfield.jpg");
-	
 		for(double t = 0.0; t < totalTime; t += dt) {
+			double xforces[] = new double[bodies.length];
+			double yforces[] = new double[bodies.length];
+//			for (int i = 0; i < len; i++) {
+//				xforces[i] = bodies[i].calcNetForceExertedByX(bodies);
+//				yforces[i] = bodies[i].calcNetForceExertedByY(bodies);
+//				bodies[i].update(dt, xforces[i], yforces[i]);
+//			}
 
 			// TODO: create double arrays xforces and yforces
 			// to hold forces on each body
 			
+			for (int i = 0; i < bodies.length; i++) {
+				xforces[i] = bodies[i].calcNetForceExertedByX(bodies);
+				yforces[i] = bodies[i].calcNetForceExertedByY(bodies);
+			}
+			for (int i = 0; i < bodies.length; i++) {
+				bodies[i].update(dt,xforces[i],yforces[i]);
+			}
+
 			// TODO: loop over all bodies, calculate
 			// net forces and store in xforces and yforces
 			
@@ -79,6 +93,9 @@ public class NBody {
 			// with dt and corresponding xforces, yforces values
 			
 			StdDraw.picture(0,0,"images/starfield.jpg");
+			for (Body body:bodies) {
+				body.draw();
+			}
 			
 			// TODO: loop over all bodies and call draw on each one
 			
